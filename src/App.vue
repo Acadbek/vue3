@@ -1,26 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <input @keyup.enter="addUser" type="text" v-model="inputValue" placeholder="add user">
+    <button @click="array.length = 0">Click</button>
+    <div v-for="(user, index) in array" :key="index">
+      <p @click="deleteUser(index)"> {{ user }}</p>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { ref, computed, watch } from 'vue'
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  setup () {
+    let inputValue = ref('')
+    let array = ref(['asad', 'jasur'])
+    let sorted = ref([])
+
+    const addUser = () => {
+      array.value.push(inputValue.value)
+      console.log(array.value)
+      inputValue.value = ''
+    }
+
+    const watchChanges = watch(array.value, () => {
+      console.log('watch')
+    })
+
+    const deleteUser = (index) => {
+      console.log('delete')
+      return array.value.splice(index, 1)
+    }
+
+    // const search = computed(() => {
+    //   return array.value.filter((element) => element.includes(inputValue.value))
+    // })
+
+    return { addUser, inputValue, array, watchChanges, watch, computed, deleteUser, sorted }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
