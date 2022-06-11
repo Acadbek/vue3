@@ -8,6 +8,7 @@
        <h3> {{ item.username }} </h3>
       </li>
     </ul>
+    <Homes/>
   </div>
 </template>
 
@@ -15,12 +16,12 @@
 import getUsers from './composable/getUsers'
 
 export default {
-  setup() {
-    const { users, getData } = getUsers()
+    setup() {
+        const { users, getData } = getUsers();
+        getData();
 
-    getData()
-
-    return { users, getData }
-  }
+        return { users, getData };
+    },
+    components: {  }
 }
 </script>
