@@ -7,33 +7,22 @@
 </template>
 
 <script>
-import functions from "../composable/functions";
 import { ref } from "vue";
+import axios from "axios";
 
 export default {
   setup() {
     let name = ref(null);
     let username = ref(null);
 
-    const { addUser } = functions()
-
-    const post = () => {
-        addUser(name.value, username)
-    }
-
-    // const { getData } = functions();
-
-    // const post = async () => {
-    //   console.log(name.value, username.value);
-    //   await axios
-    //     .post("http://localhost:3000/users", {
-    //       name: name.value,
-    //       username: username.value,
-    //     })
-    //     .then(() => {
-    //       alert("hekkki");
-    //     });
-    // };
+    const post = async () => {
+      await axios.post("http://localhost:3000/users", {
+        name: name.value,
+        username: username.value,
+      });
+      name.value = "";
+      username.value = "";
+    };
     return { name, username, post };
   },
 };
