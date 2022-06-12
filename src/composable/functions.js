@@ -14,7 +14,7 @@ const functions = () => {
     let addUser = await axios.post("http://localhost:3000/users", {
       id: users.value.length + 1,
       name: name,
-      username: username
+      username: username,
     });
     await getData();
   };

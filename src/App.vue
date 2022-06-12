@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PostUser/>
+    <PostUser />
     <ul style="text-align: center">
       <li v-for="(item, i) in users" :key="i">
         <h1>
@@ -15,12 +15,12 @@
 
 <script>
 import functions from "./composable/functions";
-import PostUser from './components/PostUser.vue'
-import { ref } from 'vue';
+import PostUser from "./components/PostUser.vue";
+import { ref } from "vue";
 export default {
   setup() {
-    let name = ref(null)
-    let username = ref(null)
+    let name = ref(null);
+    let username = ref(null);
 
     const { users, getData } = functions();
     getData();
