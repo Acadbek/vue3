@@ -2,7 +2,7 @@
   <div>
     <PostUser />
     <ul style="text-align: center">
-      <li v-for="(item, i) in users" :key="i">
+      <li style="list-style-type: none" v-for="(item, i) in users" :key="i">
         <h1>
           {{ item.name }}
         </h1>
